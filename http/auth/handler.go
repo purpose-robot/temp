@@ -42,7 +42,8 @@ func (h *Handler) Signup(w http.ResponseWriter, r *http.Request) {
 func (h *Handler) SignupPost(w http.ResponseWriter, r *http.Request) {
 	var form signupForm
 
-	if err := httputil.DecodePostForm(w, r, &form); err != nil {
+	err := httputil.DecodePostForm(w, r, &form)
+	if err != nil {
 		h.renderer.BadRequest(w, r, err)
 		return
 	}
