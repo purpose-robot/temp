@@ -110,4 +110,5 @@ type TokenStore interface {
 
 type EnqueuerStore interface {
 	EnqueueActivationEmail(ctx context.Context, email Email) error
+	EnqueueResetPasswordEmail(ctx context.Context, email Email) error
 }
