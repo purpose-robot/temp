@@ -52,8 +52,8 @@ func (s *Server) Handle() http.Handler {
 
 	authHandler := httpauth.NewHandler(s.authSvc, s.renderer, s.sessions)
 
-	mux.HandleFunc("GET /sign-up", authHandler.Signup)
-	mux.HandleFunc("POST /sign-up", authHandler.SignupPost)
+	mux.HandleFunc("GET /signup", authHandler.Signup)
+	mux.HandleFunc("POST /signup", authHandler.SignupPost)
 
 	mux.HandleFunc("GET /", s.renderer.NotFound)
 
