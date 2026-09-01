@@ -58,7 +58,7 @@ func (h *Handler) SignupPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	h.sessions.Put(r.Context(), "authenticatedUserID", user.ID)
+	h.sessions.Put(r.Context(), "authenticatedUserID", user.ID.String())
 
 	data := httputil.NewTemplateData()
 	data.Flash = "Your account was successfully registered. Please check your inbox"
