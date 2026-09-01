@@ -53,17 +53,11 @@ func (h *Handler) SignupPost(w http.ResponseWriter, r *http.Request) {
 		Password: form.Password,
 	})
 	if err != nil {
-		mapDomainError(err)
+		h.renderer.Error(w, r, toDomainError(err))
 		return
 	}
 
-	err = h.sessions.RenewToken(r.Context())
-	if err != nil {
-		h.renderer.InternalServerError(w, r, err)
-		return
-	}
-
-	h.sessions.Put(r.Context(), "authenticatedUser", user)
+	h.sessions.Put(r.Context(), "authenticatedUserID", user.ID)
 
 	data := httputil.NewTemplateData()
 	data.Flash = "Your account was successfully registered. Please check your inbox"
