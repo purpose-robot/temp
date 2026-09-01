@@ -9,7 +9,7 @@ import (
 	"github.com/purpose-robot/planet-express/internal/validator"
 )
 
-func mapDomainError(err error) error {
+func toDomainError(err error) error {
 	switch {
 	case errors.Is(err, auth.ErrRecordNotFound):
 		err = httputil.NewPublicError(err, http.StatusNotFound, auth.ErrRecordNotFound.Error())
