@@ -34,7 +34,7 @@ func (h *Handler) Signup(w http.ResponseWriter, r *http.Request) {
 	data := httputil.NewTemplateData()
 	data.Form = form
 
-	if err := h.renderer.Render(w, http.StatusOK, data, "pages/register-user.tmpl"); err != nil {
+	if err := h.renderer.Render(w, http.StatusOK, data, "base", "html/pages/register-user.tmpl"); err != nil {
 		h.renderer.InternalServerError(w, r, err)
 	}
 }
@@ -68,7 +68,7 @@ func (h *Handler) SignupPost(w http.ResponseWriter, r *http.Request) {
 	data := httputil.NewTemplateData()
 	data.Flash = "Your account was successfully registered. Please check your inbox"
 
-	if err := h.renderer.Render(w, http.StatusAccepted, data, "page/activate-user.tmpl"); err != nil {
+	if err := h.renderer.Render(w, http.StatusAccepted, data, "base", "html/page/activate-user.tmpl"); err != nil {
 		h.renderer.InternalServerError(w, r, err)
 	}
 }
